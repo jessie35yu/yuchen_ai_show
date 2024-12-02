@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* 可以根据需要调整样式 */
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <input type="radio" id="option1" name="radioOptions">
+  <label for="option1">选项一</label>
+
+  <input type="radio" id="option2" name="radioOptions">
+  <label for="option2">选项二</label>
+
+  <p id="result"></p>
+
+  <script>
+    const option1 = document.getElementById('option1');
+    const option2 = document.getElementById('option2');
+    const result = document.getElementById('result');
+
+    option1.addEventListener('change', showResult);
+    option2.addEventListener('change', showResult);
+
+    function showResult() {
+      if (option1.checked) {
+        result.textContent = '你选择了选项一。';
+      } else if (option2.checked) {
+        result.textContent = '你选择了选项二。';
+      } else {
+        result.textContent = '';
+      }
+    }
+  </script>
+
+</body>
+
+</html>

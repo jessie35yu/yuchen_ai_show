@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+   .slide {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      color: white;
+    }
+
+   .slide:nth-child(1) {
+      background-color: blue;
+    }
+
+   .slide:nth-child(2) {
+      background-color: green;
+    }
+
+   .slide:nth-child(3) {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="slides">
+    <div class="slide">幻灯片 1</div>
+    <div class="slide">幻灯片 2</div>
+    <div class="slide">幻灯片 3</div>
+  </div>
+  <button onclick="prevSlide()">上一页</button>
+  <button onclick="nextSlide()">下一页</button>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(n) {
+      slides[currentSlide].style.display = 'none';
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].style.display = 'flex';
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+  </script>
+</body>
+
+</html>

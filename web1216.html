@@ -9,7 +9,7 @@
       overflow: hidden;
     }
 
-   .slide {
+  .slide {
       width: 100vw;
       height: 100vh;
       display: flex;
@@ -19,16 +19,20 @@
       color: white;
     }
 
-   .slide:nth-child(1) {
+  .slide:nth-child(1) {
       background-color: blue;
     }
 
-   .slide:nth-child(2) {
-      background-color: green;
+  .slide:nth-child(2) {
+      background-color: red;
     }
 
-   .slide:nth-child(3) {
-      background-color: red;
+  .slide:nth-child(3) {
+      background-color: yellow;
+    }
+
+  .slide:nth-child(4) {
+      background-color: green;
     }
   </style>
 </head>
@@ -38,8 +42,8 @@
     <div class="slide">幻灯片 1</div>
     <div class="slide">幻灯片 2</div>
     <div class="slide">幻灯片 3</div>
+    <div class="slide">幻灯片 4</div>
   </div>
-  <button onclick="prevSlide()">上一页</button>
   <button onclick="nextSlide()">下一页</button>
 
   <script>
@@ -48,12 +52,11 @@
 
     function showSlide(n) {
       slides[currentSlide].style.display = 'none';
-      currentSlide = (n + slides.length) % slides.length;
+      currentSlide = n;
+      if (currentSlide >= slides.length) {
+        currentSlide = 0;
+      }
       slides[currentSlide].style.display = 'flex';
-    }
-
-    function prevSlide() {
-      showSlide(currentSlide - 1);
     }
 
     function nextSlide() {

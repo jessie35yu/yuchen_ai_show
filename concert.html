@@ -36,6 +36,10 @@
      .domain([0, d3.max(data, d => d.concerts)])
      .range([height - margin.bottom, margin.top]);
 
+    const colorScale = d3.scaleOrdinal()
+     .domain(data.map(d => d.province))
+     .range(d3.schemeCategory10); // 使用 D3 的预设颜色方案
+
     svg.append("g")
      .attr("transform", `translate(0,${height - margin.bottom})`)
      .call(d3.axisBottom(xScale));
@@ -52,7 +56,8 @@
      .attr("x", d => xScale(d.province))
      .attr("y", d => yScale(d.concerts))
      .attr("width", xScale.bandwidth())
-     .attr("height", d => height - margin.bottom - yScale(d.concerts));
+     .attr("height", d => height - margin.bottom - yScale(d.concerts))
+     .attr("fill", d => colorScale(d.province)); // 为每个条形设置颜色
   </script>
 
 </body>

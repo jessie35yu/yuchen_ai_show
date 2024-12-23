@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/d3-geo@1"></script>
+  <script src="https://unpkg.com/d3-geo-projection@3"></script>
+</head>
+
+<body>
+
+  <script>
+    const width = 800;
+    const height = 600;
+
+    const svg = d3.select("body")
+     .append("svg")
+     .attr("width", width)
+     .attr("height", height);
+
+    const projection = d3.geoMercator();
+    const path = d3.geoPath().projection(projection);
+
+    d3.json("https://unpkg.com/world-atlas@2.0.2/countries-110m.json").then(world => {
+      svg.selectAll("path")
+       .data(topojson.feature(world, world.objects.countries).features)
+       .enter()
+       .append("path")
+       .attr("d", path)
+       .attr("fill", "lightblue")
+       .attr("stroke", "gray");
+    });
+  </script>
+
+</body>
+
+</html>
